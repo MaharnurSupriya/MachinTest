@@ -1,0 +1,30 @@
+﻿@model MachinTest11.Models.Product
+
+@{
+    ViewBag.Title = "Create Product";
+}
+
+<h2 class="mb-4">Insert Product</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.ProductName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label" })
+        @Html.DropDownListFor(model => model.CategoryId, (SelectList)ViewBag.Categories, "-- Select Category --", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+    </div>
+    <br />
+    <div class="form-group d-flex">
+        <button type="submit" class="btn btn-success mx-5">Insert Product</button>
+        <a href="@Url.Action("Index", "Product")" class="btn btn-danger">Cancel</a>
+    </div>
+
+
+
+}

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<MachinTest11.Models.Category>
+
+@{
+    ViewBag.Title = "Category Index";
+}
+
+<h2>Category List</h2>
+<table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>Category ID</th>
+            <th>Category Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model)
+        {
+            <tr>
+                <td>@category.CategoryId</td>
+                <td>@category.CategoryName</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Category", new { id = category.CategoryId })" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="@Url.Action("Delete", "Category", new { id = category.CategoryId })" class="btn btn-danger btn-sm">Delete</a>
+                    <a href="@Url.Action("Create", "Category")" class="btn btn-success">Add Product</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="@Url.Action("Create", "Product")" class="btn btn-success">Add Product</a>
+<div class="pagination mt-4 d-flex justify-content-end">
+    @for (int i = 1; i <= ViewBag.TotalPages; i++)
+    {
+        if (i == ViewBag.CurrentPage)
+        {
+            <span class="btn btn-primary disabled">@i</span>
+        }
+        else
+        {
+            <a href="@Url.Action("Index", new { page = i })" class="btn btn-secondary">@i</a>
+        }
+    }
+</div>

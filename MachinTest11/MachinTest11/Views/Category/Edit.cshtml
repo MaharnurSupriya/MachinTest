@@ -1,0 +1,27 @@
+﻿@model MachinTest11.Models.Category
+
+@{
+    ViewBag.Title = "Edit Category";
+}
+
+<h2>Edit Category</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.CategoryId)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CategoryName, htmlAttributes: new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.CategoryName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })
+    </div>
+
+    <br />
+    <div class="form-group d-flex">
+        <button type="submit" class="btn btn-success mx-5">Save</button>
+        <a href="@Url.Action("Index", "Category")" class="btn btn-danger">Cancel</a>
+    </div>
+
+
+
+}

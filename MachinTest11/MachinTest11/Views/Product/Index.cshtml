@@ -1,0 +1,59 @@
+﻿@model IEnumerable<MachinTest11.Models.Product>
+
+@{
+    ViewBag.Title = "Product Index";
+}
+
+<h2>Product List</h2>
+
+<table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Category Name</th>
+            <th>Actions</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.ProductId</td>
+                <td>@product.ProductName</td>
+                <td>@product.Category.CategoryName</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Product", new { id = product.ProductId })" class="btn btn-warning btn-sm">Edit</a>
+                    <!-- Delete Button -->
+                    <a href="@Url.Action("Delete", "Product", new { id = product.ProductId })" class="btn btn-danger btn-sm">Delete</a>
+                    <!-- Create New Product Button -->
+                    <a href="@Url.Action("Create", "Product")" class="btn btn-success">Add Product</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Pagination Links -->
+<div class="pagination d-flex justify-content-end">
+
+
+    <!-- Page Number Links -->
+    @for (int i = 1; i <= ViewBag.TotalPages; i++)
+    {
+        if (i == ViewBag.CurrentPage)
+        {
+            <span class="btn btn-primary disabled">@i</span>
+        }
+        else
+        {
+            <a href="@Url.Action("Index", new { page = i })" class="btn btn-secondary">@i</a>
+        }
+    }
+
+
+</div>
+
+<a href="@Url.Action("Create", "Category")" class="btn btn-success">Add Category</a>
+

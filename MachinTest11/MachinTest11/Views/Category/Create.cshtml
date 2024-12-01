@@ -1,0 +1,21 @@
+﻿@model MachinTest11.Models.Category
+
+@{
+    ViewBag.Title = "Create Category";
+}
+
+<h2>Add Category</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.CategoryName, htmlAttributes: new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.CategoryName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })
+    </div>
+    <br />
+    <div class="form-group d-flex">
+        <button type="submit" class="btn btn-success mx-5">Insert Category</button>
+        <a href="@Url.Action("Index", "Category")" class="btn btn-danger">Cancel</a>
+    </div>
+}
